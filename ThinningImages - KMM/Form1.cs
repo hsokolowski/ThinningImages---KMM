@@ -22,8 +22,10 @@ namespace ThinningImages___KMM
         {
             if(openFileDialog1.ShowDialog()==DialogResult.OK)
             {
+                progressBar1.Value=0;
                 bmp = new Bitmap(openFileDialog1.FileName);
                 pictureBox1.Image = bmp;
+                progressBar1.PerformStep();
             }
             
         }
@@ -63,10 +65,6 @@ namespace ThinningImages___KMM
             pictureBox2.Refresh();
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void first_Click(object sender, EventArgs e)
         {
@@ -114,6 +112,54 @@ namespace ThinningImages___KMM
             if (tmp.GetPixel(x+1, y - 1).R == 255) return true;
 
             return false;
+        }
+
+        private void set_Click(object sender, EventArgs e)
+        {
+            progressBar1.PerformStep();
+            bmp = new Bitmap("C:/Users/Hubert/source/repos/ThinningImages - KMM/ThinningImages - KMM/img/szymon1.png");
+            pictureBox1.Image = bmp;
+        }
+
+        private void target_Click(object sender, EventArgs e)
+        {
+            progressBar1.PerformStep();
+            binaryzajca();
+            progressBar1.PerformStep();
+            first_Click(sender, e);
+
+        }
+        private void binaryzajca()
+        {
+            Color color, new_color;
+            int r, g, b, a;
+            Bitmap t = new Bitmap(pictureBox1.Image);
+            Bitmap tmp = new Bitmap(t.Width, t.Height);
+
+            int manual = 128;
+
+            for (int i = 0; i < bmp.Width; i++)
+            {
+                for (int j = 0; j < bmp.Height; j++)
+                {
+                    new_color = bmp.GetPixel(i, j);
+                    r = new_color.R;
+                    g = new_color.G;
+                    b = new_color.B;
+                    a = (r + g + b) / 3;
+
+                    tmp.SetPixel(i, j, a > manual ? Color.White : Color.Black);
+
+                }
+            }
+            pictureBox2.Image = tmp;
+            pictureBox2.Refresh();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            progressBar1.Maximum = 3;
+            progressBar1.Step = 1;
         }
     }
 }
