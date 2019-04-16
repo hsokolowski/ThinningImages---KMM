@@ -46,6 +46,8 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cornerButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -81,6 +83,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.saveButton);
             this.groupBox1.Controls.Add(this.target);
             this.groupBox1.Controls.Add(this.set);
             this.groupBox1.Controls.Add(this.loadImgBTN);
@@ -219,15 +222,36 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cornerButton);
             this.groupBox3.Controls.Add(this.binary);
             this.groupBox3.Controls.Add(this.first);
             this.groupBox3.Controls.Add(this.textBox1);
             this.groupBox3.Location = new System.Drawing.Point(219, 483);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(280, 80);
+            this.groupBox3.Size = new System.Drawing.Size(404, 80);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Steps";
+            // 
+            // cornerButton
+            // 
+            this.cornerButton.Location = new System.Drawing.Point(244, 21);
+            this.cornerButton.Name = "cornerButton";
+            this.cornerButton.Size = new System.Drawing.Size(75, 23);
+            this.cornerButton.TabIndex = 9;
+            this.cornerButton.Text = "corner";
+            this.cornerButton.UseVisualStyleBackColor = true;
+            this.cornerButton.Click += new System.EventHandler(this.cornerButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(6, 50);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 10;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // Form1
             // 
@@ -274,6 +298,8 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button target;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button cornerButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }
 
