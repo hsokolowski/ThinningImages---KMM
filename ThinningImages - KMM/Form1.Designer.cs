@@ -48,6 +48,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cornerButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
+            this.fullButtnon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -83,13 +84,14 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.fullButtnon);
             this.groupBox1.Controls.Add(this.saveButton);
             this.groupBox1.Controls.Add(this.target);
             this.groupBox1.Controls.Add(this.set);
             this.groupBox1.Controls.Add(this.loadImgBTN);
             this.groupBox1.Location = new System.Drawing.Point(12, 482);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 81);
+            this.groupBox1.Size = new System.Drawing.Size(200, 134);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Load file";
@@ -235,7 +237,7 @@
             // 
             // cornerButton
             // 
-            this.cornerButton.Location = new System.Drawing.Point(244, 21);
+            this.cornerButton.Location = new System.Drawing.Point(229, 20);
             this.cornerButton.Name = "cornerButton";
             this.cornerButton.Size = new System.Drawing.Size(75, 23);
             this.cornerButton.TabIndex = 9;
@@ -252,6 +254,16 @@
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // fullButtnon
+            // 
+            this.fullButtnon.Location = new System.Drawing.Point(27, 81);
+            this.fullButtnon.Name = "fullButtnon";
+            this.fullButtnon.Size = new System.Drawing.Size(135, 23);
+            this.fullButtnon.TabIndex = 11;
+            this.fullButtnon.Text = "MOCNY FULL";
+            this.fullButtnon.UseVisualStyleBackColor = true;
+            this.fullButtnon.Click += new System.EventHandler(this.fullButtnon_Click);
             // 
             // Form1
             // 
@@ -300,6 +312,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button cornerButton;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button fullButtnon;
     }
 }
 
