@@ -117,7 +117,7 @@ namespace ThinningImages___KMM
         private void set_Click(object sender, EventArgs e)
         {
             progressBar1.PerformStep();
-            bmp = new Bitmap("C:/Users/Hubert/source/repos/ThinningImages - KMM/ThinningImages - KMM/img/szymon1.png");
+            bmp = new Bitmap("C:/Users/smaly/source/repos/ThinningImages---KMM/ThinningImages - KMM/img/szymon1.png");
             pictureBox1.Image = bmp;
         }
 
