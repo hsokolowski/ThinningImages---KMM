@@ -32,6 +32,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.loadImgBTN = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.fullButtnon = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.target = new System.Windows.Forms.Button();
             this.set = new System.Windows.Forms.Button();
             this.binary = new System.Windows.Forms.Button();
@@ -47,8 +49,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cornerButton = new System.Windows.Forms.Button();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.fullButtnon = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -65,6 +66,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(11, 52);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(329, 385);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -95,6 +97,26 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Load file";
+            // 
+            // fullButtnon
+            // 
+            this.fullButtnon.Location = new System.Drawing.Point(27, 81);
+            this.fullButtnon.Name = "fullButtnon";
+            this.fullButtnon.Size = new System.Drawing.Size(135, 23);
+            this.fullButtnon.TabIndex = 11;
+            this.fullButtnon.Text = "MOCNY FULL";
+            this.fullButtnon.UseVisualStyleBackColor = true;
+            this.fullButtnon.Click += new System.EventHandler(this.fullButtnon_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(6, 50);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 10;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // target
             // 
@@ -139,6 +161,7 @@
             this.pictureBox3.Location = new System.Drawing.Point(341, 6);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(329, 385);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
             // 
@@ -148,6 +171,7 @@
             this.pictureBox2.Location = new System.Drawing.Point(6, 6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(329, 385);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 7;
             this.pictureBox2.TabStop = false;
             // 
@@ -209,6 +233,7 @@
             this.pictureBox4.Location = new System.Drawing.Point(676, 6);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(329, 385);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 8;
             this.pictureBox4.TabStop = false;
             // 
@@ -224,6 +249,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.cornerButton);
             this.groupBox3.Controls.Add(this.binary);
             this.groupBox3.Controls.Add(this.first);
@@ -245,25 +271,15 @@
             this.cornerButton.UseVisualStyleBackColor = true;
             this.cornerButton.Click += new System.EventHandler(this.cornerButton_Click);
             // 
-            // saveButton
+            // button1
             // 
-            this.saveButton.Location = new System.Drawing.Point(6, 50);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(75, 23);
-            this.saveButton.TabIndex = 10;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // fullButtnon
-            // 
-            this.fullButtnon.Location = new System.Drawing.Point(27, 81);
-            this.fullButtnon.Name = "fullButtnon";
-            this.fullButtnon.Size = new System.Drawing.Size(135, 23);
-            this.fullButtnon.TabIndex = 11;
-            this.fullButtnon.Text = "MOCNY FULL";
-            this.fullButtnon.UseVisualStyleBackColor = true;
-            this.fullButtnon.Click += new System.EventHandler(this.fullButtnon_Click);
+            this.button1.Location = new System.Drawing.Point(311, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "CN";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.crossingNumber);
             // 
             // Form1
             // 
@@ -313,6 +329,7 @@
         private System.Windows.Forms.Button cornerButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button fullButtnon;
+        private System.Windows.Forms.Button button1;
     }
 }
 

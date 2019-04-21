@@ -189,7 +189,8 @@ namespace ThinningImages___KMM
         private void set_Click(object sender, EventArgs e)
         {
             progressBar1.PerformStep();
-            bmp = new Bitmap("C:/Users/smaly/source/repos/ThinningImages---KMM/ThinningImages - KMM/img/szymon1.png");
+            //bmp = new Bitmap("C:/Users/smaly/source/repos/ThinningImages---KMM/ThinningImages - KMM/img/szymon1.png");
+            bmp = new Bitmap("C:/Users/Hubert/source/repos/ThinningImages - KMM/ThinningImages - KMM/img/szymon1.png");
             pictureBox1.Image = bmp;
         }
         int licznikDoPrzycisku = 0;
@@ -310,7 +311,7 @@ namespace ThinningImages___KMM
             
             pictureBox4.Refresh();
             
-            tmp.Save("C:/Image/poUsunieciu2.png", ImageFormat.Png);
+            //tmp.Save("C:/Image/poUsunieciu2.png", ImageFormat.Png);
         }
         private bool sprawdzCzyUsunac(int i, int j, Bitmap tmp)
         {
@@ -329,6 +330,113 @@ namespace ThinningImages___KMM
 
         }
 
+        private void crossingNumber(object sender, EventArgs e)
+        {
+            Bitmap t = new Bitmap(pictureBox4.Image);
+            int[,] tab = new int[t.Width, t.Height];
+            int[,] minuncje = new int[t.Width, t.Height];
+            Bitmap tmp = new Bitmap(t.Width, t.Height);
+
+            Color color;
+            for (int i = 1; i < bmp.Width - 1; i++) // zwykłe uzupełnienie tabliicy 0 i 1 do liczenia minuncji
+            {
+                for (int j = 1; j < bmp.Height - 1; j++)
+                {
+                    color= t.GetPixel(i, j);
+                    tmp.SetPixel(i, j, color);
+                    tab[i, j] = 0;
+                    if(color.R!=255)
+                    {
+                        tab[i, j] = 1;
+                    }
+                    Console.Write(tab[i,j]);
+
+                }
+                Console.WriteLine();
+            }
+            Bitmap filtered = new Bitmap(t.Width, t.Height);
+            for (int i = 1; i < bmp.Width - 1; i++)   //liczenie minuncji i zaznaczenie
+            {
+                for (int j = 1; j < bmp.Height - 1; j++)
+                {
+                    minuncje[i, j] = 0;
+                    if(tab[i,j]==1)
+                    {
+                        if (minuncja(i, j, tab)==1) // zakonczenia
+                        {
+                            minuncje[i, j] = 1;
+                            for (int k = i - 3; k < i + 4; k++)
+                            {
+                                for (int l = j - 3; l < j + 4; l++)
+                                {
+                                    if (k == i-3 || l == j-3 || k==i+3 || l==j+3)
+                                    {
+                                        tmp.SetPixel(k, l, Color.Red);
+                                    }
+                                }
+                            }
+                            //tmp.SetPixel(i, j, Color.Red);
+                        }
+                        if (minuncja(i, j, tab) == 3) //rozwidlenia
+                        {
+                            minuncje[i, j] = 2;
+                            for (int k = i - 3; k < i + 4; k++)
+                            {
+                                for (int l = j - 3; l < j + 4; l++)
+                                {
+                                    if (k == i - 3 || l == j - 3 || k == i + 3 || l == j + 3)
+                                    {
+                                        tmp.SetPixel(k, l, Color.Blue);
+                                    }
+                                }
+                            }
+                            //tmp.SetPixel(i, j, Color.Red);
+                        }
+                    }
+                   
+
+                }
+            }
+            tmp.Save("C:/Temp/minuncje.png", ImageFormat.Jpeg);
+            pictureBox2.Image = tmp;
+            pictureBox2.Refresh();
+
+        }
+        private void filtracja_minucji(int i, int j,int[,] tab, int promien)
+        {
+            for (int k = i - 3; k < i + 4; k++)
+            {
+                for (int l = j - 3; l < j + 4; l++)
+                {
+                   //if(tab[])
+                }
+            }
+        }
+        int[] minuncje = {1,3 };
+        private int minuncja(int x,int y,int[,] t)
+        {
+            int suma = 0;
+            suma += Math.Abs(t[x, y + 1]-   t[x-1, y + 1]);
+            suma += Math.Abs(t[x-1, y + 1]- t[x-1, y]);
+            suma += Math.Abs(t[x-1, y]-     t[x-1, y - 1]);
+            suma += Math.Abs(t[x-1, y - 1]- t[x, y - 1]);
+            suma += Math.Abs(t[x, y - 1]-   t[x+1, y - 1]);
+            suma += Math.Abs(t[x+1, y - 1]- t[x+1, y ]);
+            suma += Math.Abs(t[x+1, y ]-    t[x+1, y + 1]);
+            suma += Math.Abs(t[x+1, y + 1]- t[x, y + 1]);
+
+            suma /= 2;
+            //for(int i=0;i<minuncje.Length;i++)
+            //{
+            //    if (suma == minuncje[i]) return true;
+            //}
+            if (suma == minuncje[0]) return 1;
+            if (suma == minuncje[1]) return 3;
+            return 0;
+            
+        }
+
+
         private void fullButtnon_Click(object sender, EventArgs e)
         {
            
@@ -339,7 +447,7 @@ namespace ThinningImages___KMM
                 licznikDoPrzycisku++;
                 first_Click(sender, e);
                 Bitmap doZapisu = new Bitmap(pictureBox3.Image);
-                doZapisu.Save("C:/Image/po4etapach.png", ImageFormat.Png);
+                //doZapisu.Save("C:/Image/po4etapach.png", ImageFormat.Png);
                 cornerButton_Click(sender, e);
                 progressBar1.PerformStep();
             }
