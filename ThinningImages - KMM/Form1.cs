@@ -349,18 +349,18 @@ namespace ThinningImages___KMM
                     {
                         tab[i, j] = 1;
                     }
-                    Console.Write(tab[i,j]);
+                    //Console.Write(tab[i,j]);
 
                 }
-                Console.WriteLine();
+                //Console.WriteLine();
             }
-            Bitmap filtered = new Bitmap(t.Width, t.Height);
+           
             for (int i = 1; i < bmp.Width - 1; i++)   //liczenie minuncji i zaznaczenie
             {
                 for (int j = 1; j < bmp.Height - 1; j++)
                 {
                     minuncje[i, j] = 0;
-                    if(tab[i,j]==1)
+                    if(tab[i,j]==1) //jezeli to czarny pixel
                     {
                         if (minuncja(i, j, tab)==1) // zakonczenia
                         {
@@ -377,7 +377,7 @@ namespace ThinningImages___KMM
                             }
                             //tmp.SetPixel(i, j, Color.Red);
                         }
-                        if (minuncja(i, j, tab) == 3) //rozwidlenia
+                        if (minuncja(i, j, tab) == 2) //rozwidlenia
                         {
                             minuncje[i, j] = 2;
                             for (int k = i - 3; k < i + 4; k++)
@@ -401,16 +401,97 @@ namespace ThinningImages___KMM
             pictureBox2.Image = tmp;
             pictureBox2.Refresh();
 
-        }
-        private void filtracja_minucji(int i, int j,int[,] tab, int promien)
-        {
-            for (int k = i - 3; k < i + 4; k++)
+            int[,] minuncje_tmp = minuncje;
+
+            bool czyRowne = AreTablesTheSame(minuncje_tmp, minuncje,bmp);
+
+
+            for (int i = 1; i < bmp.Width - 1; i++)   
             {
-                for (int l = j - 3; l < j + 4; l++)
+                for (int j = 1; j < bmp.Height - 1; j++)
                 {
-                   //if(tab[])
+                    if(minuncje[i,j]==2|| minuncje[i,j]==1)
+                    {
+                        //Console.WriteLine("X:"+i+"Y:"+j+"Przed "+minuncje_tmp[i,j]);
+                        minuncje_tmp[i,j] = filtracja_minucji(i, j, minuncje_tmp);
+                        //Console.WriteLine("PO "+minuncje_tmp[i, j]);
+                    }
                 }
             }
+            bool czyRown = AreTablesTheSame(minuncje_tmp, minuncje, bmp);
+            Bitmap filtered = t;
+
+            for (int i = 1; i < bmp.Width - 1; i++)   //liczenie minuncji i zaznaczenie
+            {
+                for (int j = 1; j < bmp.Height - 1; j++)
+                {
+                   if(minuncje_tmp[i,j]==1)
+                    {
+                        for (int k = i - 3; k < i + 4; k++)
+                        {
+                            for (int l = j - 3; l < j + 4; l++)
+                            {
+                                if (k == i - 3 || l == j - 3 || k == i + 3 || l == j + 3)
+                                {
+                                    filtered.SetPixel(k, l, Color.Red);
+                                }
+                            }
+                        }
+                    }
+                    if (minuncje_tmp[i, j] == 2)
+                    {
+                        for (int k = i - 3; k < i + 4; k++)
+                        {
+                            for (int l = j - 3; l < j + 4; l++)
+                            {
+                                if (k == i - 3 || l == j - 3 || k == i + 3 || l == j + 3)
+                                {
+                                    filtered.SetPixel(k, l, Color.Blue);
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            filtered.Save("C:/Temp/poFiltracji.png", ImageFormat.Jpeg);
+            pictureBox3.Image = filtered;
+            pictureBox3.Refresh();
+        }
+        public static bool AreTablesTheSame(int[,] tbl1, int[,] tbl2 , Bitmap bmp)
+        {
+            int a, b;
+            for (int i = 0; i <bmp.Width; i++)
+            {
+                for (int c = 0; c < bmp.Height; c++)
+                {
+                    a = tbl1[i, c];
+                    b = tbl2[i, c];
+                    if (a!=b )
+                        return false;
+                }
+            }
+            return true;
+        }
+        private int filtracja_minucji(int i, int j,int[,] tab)
+        {
+            int licznik = 0;
+            for (int k = i - 7; k < i + 8; k++) //domyślnie 6x6 
+            {
+                for (int l = j - 7; l < j + 8; l++)
+                {
+                    if (k != i && l != j)
+                    {
+                        if (tab[k,l]==1||tab[k,l]==2)
+                        {
+                            licznik++;
+                        }
+                    }
+                }
+            }
+            if(licznik>0) return 0;
+            return tab[i,j];
         }
         int[] minuncje = {1,3 };
         private int minuncja(int x,int y,int[,] t)
@@ -431,7 +512,7 @@ namespace ThinningImages___KMM
             //    if (suma == minuncje[i]) return true;
             //}
             if (suma == minuncje[0]) return 1;
-            if (suma == minuncje[1]) return 3;
+            if (suma == minuncje[1]) return 2;
             return 0;
             
         }
