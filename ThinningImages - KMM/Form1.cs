@@ -190,7 +190,7 @@ namespace ThinningImages___KMM
         {
             progressBar1.PerformStep();
             //bmp = new Bitmap("C:/Users/smaly/source/repos/ThinningImages---KMM/ThinningImages - KMM/img/szymon1.png");
-            bmp = new Bitmap("C:/Users/Hubert/source/repos/ThinningImages - KMM/ThinningImages - KMM/img/szymon1.png");
+            bmp = new Bitmap("D:/0Artur/Studia/Semestr 6/Biometria/Projekt1/ThinningImages - KMM/img/szymon1.png");
             pictureBox1.Image = bmp;
         }
         int licznikDoPrzycisku = 0;
@@ -204,7 +204,7 @@ namespace ThinningImages___KMM
             progressBar1.PerformStep();
             first_Click(sender, e);
             Bitmap doZapisu = new Bitmap(pictureBox3.Image);
-            doZapisu.Save("C:/Image/po4etapach.png", ImageFormat.Png);
+            doZapisu.Save("C:/Users/Artur/Desktop/biometria/po4etapach.png", ImageFormat.Png);
             cornerButton_Click(sender, e);
           
             
@@ -326,7 +326,7 @@ namespace ThinningImages___KMM
         private void saveButton_Click(object sender, EventArgs e)
         {
             Bitmap doZapisu = new Bitmap(pictureBox3.Image);
-            doZapisu.Save("C:/Image/po4etapach.png", ImageFormat.Png);
+            doZapisu.Save("C:/Users/Artur/Desktop/biometria/po4etapach.png", ImageFormat.Png);
 
         }
 
@@ -397,7 +397,7 @@ namespace ThinningImages___KMM
 
                 }
             }
-            tmp.Save("C:/Temp/minuncje.png", ImageFormat.Jpeg);
+            tmp.Save("C:/Users/Artur/Desktop/biometria/minuncje.png", ImageFormat.Jpeg);
             pictureBox2.Image = tmp;
             pictureBox2.Refresh();
 
@@ -455,7 +455,7 @@ namespace ThinningImages___KMM
 
                 }
             }
-            filtered.Save("C:/Temp/poFiltracji.png", ImageFormat.Jpeg);
+            filtered.Save("C:/Users/Artur/Desktop/biometria/poFiltracji.png", ImageFormat.Jpeg);
             pictureBox3.Image = filtered;
             pictureBox3.Refresh();
         }
@@ -477,19 +477,23 @@ namespace ThinningImages___KMM
         private int filtracja_minucji(int i, int j,int[,] tab)
         {
             int licznik = 0;
-            for (int k = i - 7; k < i + 8; k++) //domyślnie 6x6 
-            {
-                for (int l = j - 7; l < j + 8; l++)
+
+                for (int k = i - 7; k < i + 8; k++) //domyślnie 6x6 
                 {
-                    if (k != i && l != j)
+                    for (int l = j - 7; l < j + 8; l++)
                     {
-                        if (tab[k,l]==1||tab[k,l]==2)
+
+
+                        if (k != i || l != j)
                         {
-                            licznik++;
+                            if (tab[k, l] == 1 || tab[k, l] == 2)
+                            {
+                                licznik++;
+                            }
                         }
                     }
                 }
-            }
+            
             if(licznik>0) return 0;
             return tab[i,j];
         }
