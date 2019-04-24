@@ -129,7 +129,7 @@ namespace ThinningImages___KMM
         237,239,240,241,243,244,245,246,
         247,248,249,251,252,253,254,255
         };
-        private bool sprawdzSume(int s)
+        private bool sprawdzSume(int s) // sprawdza sume dla 4
         {
             for (int i = 0; i < 24; i++)
             {
@@ -138,7 +138,7 @@ namespace ThinningImages___KMM
             return false;
 
         }
-        private int policzSume(int x, int y, Bitmap tmp)
+        private int policzSume(int x, int y, Bitmap tmp) //liczy sume sasiadow dla sadziectwa, tablica usuniec
         {
             int suma = 0;
 
@@ -153,7 +153,7 @@ namespace ThinningImages___KMM
 
             return suma;
         }
-        private int policzSumeDla2(int x, int y, Bitmap tmp)
+        private int policzSumeDla2(int x, int y, Bitmap tmp) // suma dla dwojek
         {
             int suma = 0;
             if (tmp.GetPixel(x - 1, y).B==0 ) suma += 1;
@@ -167,7 +167,7 @@ namespace ThinningImages___KMM
 
             return suma;
         }
-        private bool kontur(int x, int y,Bitmap tmp)
+        private bool kontur(int x, int y,Bitmap tmp) // czy dotyka bokiem (2),
         {
             if (tmp.GetPixel(x - 1, y).R == 255) return true;
             if (tmp.GetPixel(x , y-1).R == 255) return true;
@@ -176,7 +176,7 @@ namespace ThinningImages___KMM
 
             return false;
         }
-        private bool rog(int x, int y, Bitmap tmp)
+        private bool rog(int x, int y, Bitmap tmp) // czy dotyka rogiem (3)
         {
             if (tmp.GetPixel(x - 1, y-1).R == 255) return true;
             if (tmp.GetPixel(x-1, y + 1).R == 255) return true;
@@ -186,17 +186,17 @@ namespace ThinningImages___KMM
             return false;
         }
 
-        private void set_Click(object sender, EventArgs e)
+        private void set_Click(object sender, EventArgs e) //laduje zdjecie
         {
             progressBar1.PerformStep();
-            //bmp = new Bitmap("C:/Users/smaly/source/repos/ThinningImages---KMM/ThinningImages - KMM/img/szymon1.png");
-            bmp = new Bitmap("D:/0Artur/Studia/Semestr 6/Biometria/Projekt1/ThinningImages - KMM/img/szymon1.png");
+            bmp = new Bitmap("C:/Users/smaly/source/repos/ThinningImages---KMM/ThinningImages - KMM/img/szymon1.png");
+            //bmp = new Bitmap("C:/Image");
             pictureBox1.Image = bmp;
         }
         int licznikDoPrzycisku = 0;
         int licznikZmian = 1;
 
-        private void target_Click(object sender, EventArgs e)
+        private void target_Click(object sender, EventArgs e) // idzie po kolei etapami
         {
             progressBar1.PerformStep();
             binaryzajca();
@@ -204,7 +204,7 @@ namespace ThinningImages___KMM
             progressBar1.PerformStep();
             first_Click(sender, e);
             Bitmap doZapisu = new Bitmap(pictureBox3.Image);
-            doZapisu.Save("C:/Users/Artur/Desktop/biometria/po4etapach.png", ImageFormat.Png);
+            doZapisu.Save("C:/Image/po4etapach", ImageFormat.Png);
             cornerButton_Click(sender, e);
           
             
@@ -235,7 +235,7 @@ namespace ThinningImages___KMM
             }
             pictureBox2.Image = tmp;
             pictureBox2.Refresh();
-        }
+        } 
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -243,7 +243,7 @@ namespace ThinningImages___KMM
             progressBar1.Step = 1;
         }
 
-        private void cornerButton_Click(object sender, EventArgs e)
+        private void cornerButton_Click(object sender, EventArgs e) // ustawianie 4
         {
             Color color;
             
@@ -313,7 +313,7 @@ namespace ThinningImages___KMM
             
             //tmp.Save("C:/Image/poUsunieciu2.png", ImageFormat.Png);
         }
-        private bool sprawdzCzyUsunac(int i, int j, Bitmap tmp)
+        private bool sprawdzCzyUsunac(int i, int j, Bitmap tmp) //sprawdza z tablica usuniec czy usunac
         {
             int suma = policzSumeDla2(i, j, tmp);
             for (int x=0; x<120;x++)
@@ -326,7 +326,7 @@ namespace ThinningImages___KMM
         private void saveButton_Click(object sender, EventArgs e)
         {
             Bitmap doZapisu = new Bitmap(pictureBox3.Image);
-            doZapisu.Save("C:/Users/Artur/Desktop/biometria/po4etapach.png", ImageFormat.Png);
+            doZapisu.Save("C:/Image/po4etapach.png", ImageFormat.Png);
 
         }
 
@@ -397,7 +397,7 @@ namespace ThinningImages___KMM
 
                 }
             }
-            tmp.Save("C:/Users/Artur/Desktop/biometria/minuncje.png", ImageFormat.Jpeg);
+            tmp.Save("C:/Image/minuncje.png", ImageFormat.Jpeg);
             pictureBox2.Image = tmp;
             pictureBox2.Refresh();
 
@@ -455,7 +455,7 @@ namespace ThinningImages___KMM
 
                 }
             }
-            filtered.Save("C:/Users/Artur/Desktop/biometria/poFiltracji.png", ImageFormat.Jpeg);
+            filtered.Save("C:/Image/poFiltracji.png", ImageFormat.Jpeg);
             pictureBox3.Image = filtered;
             pictureBox3.Refresh();
         }
@@ -540,6 +540,6 @@ namespace ThinningImages___KMM
             progressBar1.Value=10;
             
 
-        }
+        } //wszysktie etpay
     }
 }
